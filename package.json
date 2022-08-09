@@ -1,0 +1,8 @@
+{
+  "name": "elasticsearch_get-started",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Samuel-Ricardo/elasticsearch_get-started.git",
+  "author": "samuel-ricardo <samuelricardoofficial@gmail.com>",
+  "license": "MIT"
+}
