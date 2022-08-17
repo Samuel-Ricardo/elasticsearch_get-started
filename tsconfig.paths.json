@@ -2,7 +2,8 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@Types": ["@types/index"]
+            "@Types": ["@types/index"],
+            "@Clients":["client"],
         }
     }
 }
