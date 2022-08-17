@@ -22,6 +22,6 @@ app.get('/', async (req:Request, res:Response) => {
     });
 })
 
-app.get('/db/setup', DBController.create)
+app.get('/db/setup', DBController.create);
 
 app.listen(3333, () => console.log(`Running http://localhost:3333`))
