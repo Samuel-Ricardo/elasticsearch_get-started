@@ -22,7 +22,7 @@ class PhotoController implements IController {
     }
 
     async findAll (req: Request, res: Response): Promise<any> {
-        res.json(await getExecutionDuration<SearchResponse<unknown>>(async ()=>{
+        return res.json(await getExecutionDuration<SearchResponse<unknown>>(async ()=>{
             const search_result = await getElasticSearchClient().search({
                 index: 'photos',
                 size: 6000
@@ -40,7 +40,20 @@ class PhotoController implements IController {
             q: `id:${id}`
         })
 
-        res.json(data.hits.hits)
+        return res.json(data.hits.hits)
+    }
+
+    async findByQuery(req: Request, res: Response){
+        return res.json(await getElasticSearchClient().search({
+            index: 'photos',
+            body: {
+                query: {
+                    term: {
+                        "title.keyword": 'Title De Teste'
+                    }
+                }
+            }
+        }))
     }
 }
 
