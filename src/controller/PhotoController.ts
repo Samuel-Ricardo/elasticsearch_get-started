@@ -1,12 +1,8 @@
 import { getElasticSearchClient } from '@Clients';
-import { IElasticIndex, IElasticTypes } from '@types/elastic';
-import { IPhoto } from '@types/photo';
+import { IElasticIndex, IElasticTypes, IController, IPhoto } from '@Types';
 import { getExecutionDuration } from '@Utils';
 import { SearchResponse } from 'elasticsearch';
 import { Request, Response } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
-import { ParsedQs } from 'qs';
-import { IController } from '../@types/controller';
 import { getAll } from './DBController';
 
 const populateElasticDB = async (rows: any[], res: Response) => {
