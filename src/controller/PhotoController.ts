@@ -30,6 +30,18 @@ class PhotoController implements IController {
             return search_result
         }))
     }
+
+    async findById (req: Request, res: Response) {
+        
+        const {id} = req.params;
+
+        const data = await getElasticSearchClient().search({
+            index: 'photos',
+            q: `id:${id}`
+        })
+
+        res.json(data.hits.hits)
+    }
 }
 
 export default new PhotoController;
