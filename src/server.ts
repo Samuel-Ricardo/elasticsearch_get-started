@@ -27,5 +27,6 @@ app.get('/db/setup', DBController.create);
 app.get('/photos/setup', PhotoController.create);
 
 app.get('/photos/findAll', PhotoController.findAll);
+app.get('/photos/findById/:id', PhotoController.findById);
 
 app.listen(3333, () => console.log(`Running http://localhost:3333`))
