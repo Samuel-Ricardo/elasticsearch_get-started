@@ -26,4 +26,6 @@ app.get('/', async (req:Request, res:Response) => {
 app.get('/db/setup', DBController.create);
 app.get('/photos/setup', PhotoController.create);
 
+app.get('/photos/findAll', PhotoController.findAll);
+
 app.listen(3333, () => console.log(`Running http://localhost:3333`))
