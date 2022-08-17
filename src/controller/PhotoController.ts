@@ -1,4 +1,5 @@
 import { getElasticSearchClient } from '@Clients';
+import { IElasticIndex, IElasticTypes } from '@types/elastic';
 import { IPhoto } from '@types/photo';
 import { getExecutionDuration } from '@Utils';
 import { SearchResponse } from 'elasticsearch';
@@ -11,8 +12,8 @@ import { getAll } from './DBController';
 const populateElasticDB = async (rows: any[], res: Response) => {
     for await (let row of rows) {
         await getElasticSearchClient().index({
-            index: 'photos',
-            type: 'type_photos',
+            index: IElasticIndex.PHOTOS,
+            type: IElasticTypes.PHOTOS,
             body: row
         }, error => error? res.status(400).json({error}) : {error})
     }
@@ -25,7 +26,7 @@ class PhotoController implements IController {
     async findAll (req: Request, res: Response): Promise<any> {
         return res.json(await getExecutionDuration<SearchResponse<unknown>>(async ()=>{
             const search_result = await getElasticSearchClient().search({
-                index: 'photos',
+                index: IElasticIndex.PHOTOS,
                 size: 6000
             })
             return search_result
@@ -37,7 +38,7 @@ class PhotoController implements IController {
         const {id} = req.params;
 
         const data = await getElasticSearchClient().search({
-            index: 'photos',
+            index: IElasticIndex.PHOTOS,
             q: `id:${id}`
         })
 
@@ -46,7 +47,7 @@ class PhotoController implements IController {
 
     async findByQuery(req: Request, res: Response){
         return res.json(await getElasticSearchClient().search({
-            index: 'photos',
+            index: IElasticIndex.PHOTOS,
             body: {
                 query: {
                     term: {
@@ -67,8 +68,8 @@ class PhotoController implements IController {
         }
 
         return res.json(await getElasticSearchClient().index({
-            index: 'photos',
-            type: 'type_photos',
+            index: IElasticIndex.PHOTOS,
+            type: IElasticTypes.PHOTOS,
             body: photo
         }));
     }
