@@ -47,7 +47,7 @@ class PhotoController implements IController {
             body: {
                 query: {
                     term: {
-                        "title.keyword": 'Title De Teste'
+                        "title.keyword": 'happy'
                     }
                 }
             }
