@@ -4,6 +4,7 @@
         "paths": {
             "@Types": ["@types/index"],
             "@Clients":["client"],
+            "@Controllers": ["controller"]
         }
     }
 }
