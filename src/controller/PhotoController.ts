@@ -1,4 +1,5 @@
 import { getElasticSearchClient } from '@Clients';
+import { IPhoto } from '@types/photo';
 import { getExecutionDuration } from '@Utils';
 import { SearchResponse } from 'elasticsearch';
 import { Request, Response } from 'express';
@@ -54,6 +55,22 @@ class PhotoController implements IController {
                 }
             }
         }))
+    }
+
+    async createPhoto(req: Request, res: Response){
+        const photo:IPhoto = {
+            "albumid": null,
+            "id": 99999,
+            "title": "happy",
+            "url": "https://photos/happy.png",
+            "thumbnilurl": null
+        }
+
+        return res.json(await getElasticSearchClient().index({
+            index: 'photos',
+            type: 'type_photos',
+            body: photo
+        }));
     }
 }
 
