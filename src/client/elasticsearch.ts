@@ -1,5 +1,5 @@
 import elasticsearch from 'elasticsearch'
 
-export const getClient = () => new elasticsearch.Client({
+export const getElasticSearchClient = () => new elasticsearch.Client({
     host: 'localhost:9200',
 })
