@@ -1,4 +1,5 @@
 import DBController from 'controller/DBController';
+import PhotoController from 'controller/PhotoController';
 import express, { Request, Response } from 'express'
 import { getElasticSearchClient } from './client/elasticsearch';
 
@@ -23,5 +24,6 @@ app.get('/', async (req:Request, res:Response) => {
 })
 
 app.get('/db/setup', DBController.create);
+app.get('/photos/setup', PhotoController.create);
 
 app.listen(3333, () => console.log(`Running http://localhost:3333`))

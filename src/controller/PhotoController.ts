@@ -17,3 +17,5 @@ class PhotoController implements IController {
         return res.json({result: await populateElasticDB(await getAll(), res), message: "Indexes OK :D"}) 
     }
 }
+
+export default new PhotoController;
