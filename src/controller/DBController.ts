@@ -4,16 +4,18 @@ import { getExecutionDuration } from '@Utils';
 import { Client } from 'pg';
 import { getPGClient } from '@Clients';
 
+export const getAll = async ():Promise<any[]> => {
+
+    const client = getPGClient();
+    await client.connect();
+
+    const {rows} = await client.query("SELECT * FROM photos")
+    return rows;
+}
+
 class DBController implements IController {
     async create(req: Request, res: Response) {
-        return res.json(await getExecutionDuration<any[]>(async ():Promise<any[]> => {
-
-            const client = getPGClient();
-            await client.connect();
-
-            const {rows} = await client.query("SELECT * FROM photos")
-            return rows;
-        }))
+        return res.json(await getExecutionDuration<any[]>(getAll))
     }
 }
 
