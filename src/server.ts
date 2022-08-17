@@ -1,11 +1,12 @@
+import DBController from 'controller/DBController';
 import express, { Request, Response } from 'express'
-import { getClient } from './client/elasticsearch';
+import { getElasticSearchClient } from './client/elasticsearch';
 
 const app = express();
 
 app.get('/', async (req:Request, res:Response) => {
 
-    const result = await getClient().index({ 
+    const result = await getElasticSearchClient().index({ 
         index: 'elasticsearch',
         type: 'type_elastic_teste',
         body: {
@@ -20,5 +21,7 @@ app.get('/', async (req:Request, res:Response) => {
         result
     });
 })
+
+app.get('/db/setup', DBController.create)
 
 app.listen(3333, () => console.log(`Running http://localhost:3333`))
