@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@Types": ["@types/index"]
+        }
+    }
+}
